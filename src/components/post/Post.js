@@ -8,6 +8,7 @@ function Post({ post }) {
   return (
     <div className="Post">
       <div className="heading">
+        {/* <Avatar src={post.owner.url} /> */}
         <Avatar />
         <h4>Sahil Dubey</h4>
       </div>
