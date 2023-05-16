@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Post from "../post/Post";
+import userImg from "../../assets/user.png";
 import "./Profile.scss";
 import { useNavigate, useParams } from "react-router";
 import CreatePost from "../createPost/CreatePost";
@@ -10,10 +11,10 @@ import { followAndUnfollowUser } from "../../redux/slices/feedSlice";
 function Profile() {
   const navigate = useNavigate();
   const params = useParams();
-  const dispatch = useDispatch();
   const userProfile = useSelector((state) => state.postsReducer.userProfile);
   const myProfile = useSelector((state) => state.appConfigReducer.myProfile);
   const feedData = useSelector((state) => state.feedDataReducer.feedData);
+  const dispatch = useDispatch();
   const [isMyProfile, setIsMyProfile] = useState(false);
   const [isFollowing, setIsFollowing] = useState(false);
 
@@ -23,16 +24,17 @@ function Profile() {
         userId: params.userId,
       })
     );
-    setIsMyProfile(myProfile?._id === params.userId);
+    setIsMyProfile(myProfile?._id === params?.userId);
     setIsFollowing(
       feedData?.followings?.find((item) => item._id === params.userId)
     );
+    // eslint-disable-next-line
   }, [myProfile, params.userId, feedData]);
 
   function handleUserFollow() {
     dispatch(
       followAndUnfollowUser({
-        userIdToFollow: params.userId,
+        userIdToFollow: params?.userId,
       })
     );
   }
@@ -48,7 +50,11 @@ function Profile() {
         </div>
         <div className="right-part">
           <div className="profile-card">
-            <img className="user-img" src={userProfile?.avatar?.url} alt="" />
+            <img
+              className="user-img"
+              src={userProfile?.avatar?.url || userImg}
+              alt=""
+            />
             <h3 className="user-name">{userProfile?.name}</h3>
             <p className="bio">{userProfile?.bio}</p>
             <div className="follower-info">

@@ -19,18 +19,16 @@ function CreatePost() {
     fileReader.onload = () => {
       if (fileReader.readyState === fileReader.DONE) {
         setPostImg(fileReader.result);
-        console.log("img data", fileReader.result);
       }
     };
   };
 
   const hanldePostSubmit = async () => {
     try {
-      const result = await axiosClient.post("/posts", {
+      await axiosClient.post("/posts", {
         caption,
         postImg,
       });
-      console.log("post done", result);
       dispatch(
         getUserProfile({
           userId: myProfile?._id,

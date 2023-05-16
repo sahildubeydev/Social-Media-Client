@@ -18,9 +18,7 @@ function Login() {
       });
       setItem(KEY_ACCESS_TOKEN, response.result.accessToken);
       navigate("/");
-    } catch (error) {
-      // console.log(error);
-    }
+    } catch (error) {}
   }
 
   return (

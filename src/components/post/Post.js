@@ -1,5 +1,6 @@
 import React from "react";
 import Avatar from "../avatar/Avatar";
+import userImg from "../../assets/user.png";
 import "./Post.scss";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { useDispatch } from "react-redux";
@@ -30,9 +31,9 @@ function Post({ post }) {
     <div className="Post">
       <div
         className="heading"
-        onClick={() => navigate(`/profile/${post.owner._id}`)}
+        onClick={() => navigate(`/profile/${post?.owner._id}`)}
       >
-        <Avatar src={post?.owner?.avatar?.url} />
+        <Avatar src={post?.owner?.avatar?.url || userImg} />
         <h4>{post?.owner?.name}</h4>
       </div>
       <div className="content">
@@ -40,7 +41,7 @@ function Post({ post }) {
       </div>
       <div className="footer">
         <div className="like" onClick={handlePostLiked}>
-          {post.isLiked ? (
+          {post?.isLiked ? (
             <AiFillHeart style={{ color: "red" }} className="icon" />
           ) : (
             <AiOutlineHeart className="icon" />

@@ -10,7 +10,6 @@ import { setLoading, showToast } from "../redux/slices/appConfigSlice";
 import { TOAST_FAILURE } from "../App";
 
 let baseURL = "http://localhost:4000/";
-console.log("env is", process.env.NODE_ENV);
 if (process.env.NODE_ENV === "production") {
   baseURL = process.env.REACT_APP_SERVER_BASE_URL;
 }
@@ -48,14 +47,14 @@ axiosClient.interceptors.response.use(
     );
 
     if (statusCode === 401 && !originalRequest._retry) {
-      // means the access token has expired
+      // means the access token has expired and send user to login page
       originalRequest._retry = true;
 
       const response = await axios
         .create({
           withCredentials: true,
         })
-        .get(`${process.env.REACT_APP_SERVER_BASE_URL}/auth/refresh`);
+        .get(`${baseURL}/auth/refresh`);
 
       if (response.data.status === "ok") {
         setItem(KEY_ACCESS_TOKEN, response.data.result.accessToken);

@@ -15,7 +15,7 @@ export const updateMyProfile = createAsyncThunk(
   async (body) => {
     try {
       const response = await axiosClient.put("/user/", body);
-      return response.result;
+      return response?.result;
     } catch (error) {
       return Promise.reject(error);
     }

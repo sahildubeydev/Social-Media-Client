@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./UpdateProfile.scss";
 import dummyUserImg from "../../assets/user.png";
 import { useSelector, useDispatch } from "react-redux";
-import { setLoading, updateMyProfile } from "../../redux/slices/appConfigSlice";
+import { updateMyProfile } from "../../redux/slices/appConfigSlice";
 
 function UpdateProfile() {
   const myProfile = useSelector((state) => state.appConfigReducer.myProfile);
@@ -24,7 +24,6 @@ function UpdateProfile() {
     fileReader.onload = () => {
       if (fileReader.readyState === fileReader.DONE) {
         setUserImg(fileReader.result);
-        console.log("img data", fileReader.result);
       }
     };
   }
@@ -46,7 +45,7 @@ function UpdateProfile() {
         <div className="left-part">
           <div className="input-user-img">
             <label htmlFor="inputImg" className="labelImg">
-              <img src={userImg ? userImg : dummyUserImg} alt={name} />
+              <img src={userImg || dummyUserImg} alt={name} />
             </label>
             <input
               className="inputImg"
@@ -78,7 +77,7 @@ function UpdateProfile() {
             />
           </form>
 
-          <button className="delete-account btn-primary">Delete Account</button>
+          {/* <button className="delete-account btn-primary">Delete Account</button> */}
         </div>
       </div>
     </div>

@@ -41,7 +41,7 @@ p {
 }
 
 .hover-link:active {
-  color: red;
+  color: #808080;
 }
 
 .container {
@@ -61,6 +61,7 @@ p {
 
 .btn-primary:hover {
   background-color: #5f9fff;
+  border-radius: 50px;
 }
 
 .btn-primary:active {
@@ -79,6 +80,7 @@ p {
 
 .btn-secondary:hover {
   background-color: #ddd;
+  border-radius: 50px;
 }
 
 .btn-secondary:active {

@@ -3,14 +3,12 @@ import { AiOutlineLogout } from "react-icons/ai";
 import { useNavigate } from "react-router";
 import "./Navbar.scss";
 import Avatar from "../avatar/Avatar";
-import { useDispatch, useSelector } from "react-redux";
-import { setLoading } from "../../redux/slices/appConfigSlice";
+import { useSelector } from "react-redux";
 import { KEY_ACCESS_TOKEN, removeItem } from "../../utils/localStorageManager";
 import { axiosClient } from "../../utils/axiosClient";
 
 function Navbar() {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const myProfile = useSelector((state) => state.appConfigReducer.myProfile);
 
   async function handleLogoutClicked() {

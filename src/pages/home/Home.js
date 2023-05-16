@@ -8,6 +8,7 @@ function Home() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getMyInfo());
+    // eslint-disable-next-line
   }, []);
   return (
     <>
